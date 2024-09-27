@@ -32,7 +32,6 @@ public class User implements Serializable {
 		return orders;
 	}
 
-
 	public User() {
 		super();
 	}
