@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.tucadev.course.entities.User;
 import com.tucadev.course.repositories.UserRepository;
+import com.tucadev.course.services.exceptions.DatabaseException;
 import com.tucadev.course.services.exceptions.ResourceNotFoundException;
 
 @Service
@@ -28,8 +30,16 @@ public class UserService {
 		return repository.save(obj);
 	}
 	
-	public void delete(Long id) {
-		repository.deleteById(id);
+	public void delete(Long id){
+		// Nova documentação do Spring não gera exceção ao tentar deletar id inexistente
+	    try {
+	        if(!repository.existsById(id)) throw new ResourceNotFoundException(id);
+	        repository.deleteById(id);
+	    }catch (ResourceNotFoundException e){
+	        throw new ResourceNotFoundException(id);
+	    }catch (DataIntegrityViolationException e) {
+	    	throw new DatabaseException(e.getMessage());
+	    }
 	}
 	
 	public User update(Long id, User obj) {

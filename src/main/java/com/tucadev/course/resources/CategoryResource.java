@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tucadev.course.entities.Category;
-import com.tucadev.course.entities.User;
 import com.tucadev.course.services.CategoryService;
 
 @RestController
