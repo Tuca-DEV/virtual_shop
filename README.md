@@ -9,8 +9,8 @@ Este projeto foi construído durante as aulas do curso de Java do professor Neli
 A aplicação consiste em um sistema back-end que contém as lógicas, relações, entidades e demais configurações básicas para uma loja virtual de compras.
 
 
-# Tecnologias utilizadas
-## Back end
+## Tecnologias utilizadas
+
 - Java 17
 - Spring Boot 3
 - JPA / Hibernate
